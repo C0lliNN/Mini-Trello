@@ -10,21 +10,38 @@ export default {
     variant: {
       type: String,
       required: true
+    },
+    size: {
+      type: String,
+      required: false,
+      default: '',
+      validator: (val) => val === 'sm' || val === 'lg'
     }
   },
   computed: {
     classes() {
+      const classes = ['btn'];
+
       if (this.variant === 'success') {
-        return 'success';
+        classes.push('btn-success');
       }
-      return '';
+
+      if (this.variant === 'danger') {
+        classes.push('btn-danger');
+      }
+
+      if (this.size === 'sm') {
+        classes.push('btn-sm');
+      }
+
+      return classes.join(' ');
     }
   }
 };
 </script>
 
 <style scoped>
-button {
+.btn {
   border: none;
   outline: none;
   color: #565656;
@@ -36,11 +53,26 @@ button {
   transition: background-color 0.2s ease-in;
 }
 
-.success {
+.btn-success {
   background-color: #b2ffa9;
 }
 
-.sucesss:hover {
+.btn-sucesss:hover {
   background-color: #a3ff99;
+}
+
+.btn-danger {
+  background-color: #ed474a;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #ee585a;
+}
+
+.btn-sm {
+  padding: 7px 12px;
+  font-size: 0.9em;
+  font-weight: 500;
 }
 </style>
