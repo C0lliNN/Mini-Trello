@@ -1,7 +1,9 @@
 <template>
   <header>
     <h1>Todos</h1>
-    <base-button variant="success">Novo</base-button>
+    <base-button @click="$emit('handle-show-create-modal')" variant="success"
+      >Novo</base-button
+    >
   </header>
 </template>
 

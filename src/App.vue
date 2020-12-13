@@ -1,17 +1,25 @@
 <template>
-  <the-header></the-header>
+  <the-header @handleShowCreateModal="showCreateModal"></the-header>
   <main>
     <todos-list title="Todo" :todos="pendingTodos"></todos-list>
     <todos-list title="Done"></todos-list>
   </main>
+  <create-todo-item @handleCloseModal="closeCreateModal" v-if="showCreateTodoModal"></create-todo-item>
 </template>
 
 <script>
+import CreateTodoItem from './components/CreateTodoItem.vue';
 import TheHeader from './components/TheHeader';
 import TodosList from './components/TodosList';
 
 export default {
   name: 'App',
+
+  components: {
+    TheHeader,
+    TodosList,
+    CreateTodoItem
+  },
   data() {
     return {
       pendingTodos: [
@@ -28,12 +36,17 @@ export default {
           priority: 'Normal'
         }
       ],
-      doneTodos: []
+      doneTodos: [],
+      showCreateTodoModal: false
     };
   },
-  components: {
-    TheHeader,
-    TodosList
+  methods: {
+    showCreateModal() {
+      this.showCreateTodoModal = true;
+    },
+    closeCreateModal() {
+      this.showCreateTodoModal = false;
+    }
   }
 };
 </script>

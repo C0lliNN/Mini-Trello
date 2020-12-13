@@ -15,7 +15,6 @@ export default {
       type: String,
       required: false,
       default: '',
-      validator: (val) => val === 'sm' || val === 'lg'
     }
   },
   computed: {
