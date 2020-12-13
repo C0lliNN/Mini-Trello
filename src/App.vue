@@ -1,14 +1,17 @@
 <template>
-  <Header />
+  <the-header></the-header>
+  <Todos title="Todo"/>
 </template>
 
 <script>
-import Header from './components/Header/Header';
+import TheHeader from './components/TheHeader';
+import Todos from './components/Todos';
 
 export default {
   name: 'App',
   components: {
-    Header
+    TheHeader,
+    Todos
   }
 };
 </script>
