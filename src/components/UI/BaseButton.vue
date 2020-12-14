@@ -14,7 +14,7 @@ export default {
     size: {
       type: String,
       required: false,
-      default: '',
+      default: ''
     }
   },
   computed: {
@@ -27,6 +27,10 @@ export default {
 
       if (this.variant === 'danger') {
         classes.push('btn-danger');
+      }
+
+      if (this.variant === 'primary') {
+        classes.push('btn-primary');
       }
 
       if (this.size === 'sm') {
@@ -58,6 +62,15 @@ export default {
 
 .btn-sucesss:hover {
   background-color: #a3ff99;
+}
+
+.btn-primary {
+  background-color: rgb(34, 121, 235);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: rgb(29, 104, 202);
 }
 
 .btn-danger {

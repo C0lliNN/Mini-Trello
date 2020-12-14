@@ -35,8 +35,14 @@ export default {
     priorityClasses() {
       const classes = ['priority'];
       switch (this.priority) {
-        case 'Normal':
+        case 'normal':
           classes.push('normal');
+          break;
+        case 'important':
+          classes.push('important');
+          break;
+        case 'urgent':
+          classes.push('urgent');
           break;
         default:
       }
@@ -76,5 +82,13 @@ li h3 {
 
 .priority.normal {
   background-color: #b2ffa9;
+}
+
+.priority.important {
+  background-color: orange;
+}
+
+.priority.urgent {
+  background-color: #ed474a;
 }
 </style>

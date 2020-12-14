@@ -12,7 +12,7 @@
         <label for="description">Descrição</label>
         <textarea
           id="description"
-          rows="5"
+          rows="10"
           autocomplete="off"
           v-model="description"
         ></textarea>
@@ -21,15 +21,30 @@
         <label>Prioridade</label>
         <div>
           <label class="priority">
-            <input type="radio" name="priority" value="normal" v-model="priority"/>
+            <input
+              type="radio"
+              name="priority"
+              value="normal"
+              v-model="priority"
+            />
             <div class="normal"></div>
           </label>
           <label class="priority">
-            <input type="radio" name="priority" value="important" v-model="priority"/>
+            <input
+              type="radio"
+              name="priority"
+              value="important"
+              v-model="priority"
+            />
             <div class="important"></div>
           </label>
           <label class="priority">
-            <input type="radio" name="priority" value="urgent" v-model="priority"/>
+            <input
+              type="radio"
+              name="priority"
+              value="urgent"
+              v-model="priority"
+            />
             <div class="urgent"></div>
           </label>
         </div>
@@ -43,7 +58,7 @@
       >
         Cancelar
       </base-button>
-      <base-button variant="success"> Criar </base-button>
+      <base-button variant="success" @click="handleSubmit"> Criar </base-button>
     </template>
   </base-modal>
 </template>
@@ -54,7 +69,7 @@ import BaseFormGroup from './UI/BaseFormGroup.vue';
 import BaseModal from './UI/BaseModal';
 
 export default {
-  emits: ['handle-close-modal'],
+  emits: ['handle-close-modal', 'handle-create-todo'],
   props: {
     showModal: {
       type: Boolean,
@@ -67,6 +82,22 @@ export default {
       description: '',
       priority: 'normal'
     };
+  },
+  methods: {
+    handleSubmit() {
+      this.$emit(
+        'handle-create-todo',
+        this.title,
+        this.description,
+        this.priority
+      );
+
+      this.title = '';
+      this.description = '';
+      this.priority = 'normal';
+
+      this.$emit('handle-close-modal');
+    }
   },
   components: {
     BaseModal,
@@ -91,9 +122,9 @@ export default {
   margin-top: 5px;
 }
 
-.normal,
-.important,
-.urgent {
+.priority .normal,
+.priority .important,
+.priority .urgent {
   width: 60px;
   height: 30px;
   border-radius: 8px;
@@ -102,16 +133,16 @@ export default {
   transition: box-shadow 0.3s ease-in-out;
 }
 
-.normal {
+.priority .normal {
   background-color: #b2ffa9;
 }
 
-.important {
+.priority .important {
   background-color: orange;
   margin: 0 15px;
 }
 
-.urgent {
+.priority .urgent {
   background-color: #ed474a;
 }
 </style>
