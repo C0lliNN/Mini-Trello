@@ -76,8 +76,8 @@ export default {
   z-index: 100;
   box-sizing: border-box;
   position: relative;
-  transform: translateY(-300%);
-  transition: transform 0.4s ease-in-out;
+  transform: translateY(-600%);
+  transition: transform 0.5s ease-in-out;
   transition-delay: 0.3s;
 }
 
