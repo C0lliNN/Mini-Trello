@@ -1,5 +1,5 @@
 <template>
-  <base-modal>
+  <base-modal :showModal="showModal">
     <template #header>
       <h3>
         Novo Todo
@@ -22,6 +22,7 @@ import BaseModal from './UI/BaseModal'
 
 export default {
   emits: ['handle-close-modal'],
+  props: ['showModal'],
   components: {
     BaseModal,
     BaseButton

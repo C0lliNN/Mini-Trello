@@ -4,7 +4,7 @@
     <todos-list title="Todo" :todos="pendingTodos"></todos-list>
     <todos-list title="Done"></todos-list>
   </main>
-  <create-todo-item @handleCloseModal="closeCreateModal" v-if="showCreateTodoModal"></create-todo-item>
+  <create-todo-item @handleCloseModal="closeCreateModal" :showModal="showCreateTodoModal"></create-todo-item>
 </template>
 
 <script>
