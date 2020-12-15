@@ -83,8 +83,8 @@ export default {
 }
 
 .btn-sm {
-  padding: 7px 12px;
-  font-size: 0.9em;
+  padding: 2px 4px;
+  font-size: 0.8em;
   font-weight: 500;
 }
 </style>

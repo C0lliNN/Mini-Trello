@@ -3,6 +3,7 @@
   <main>
     <todos-list
       @handleShowDetailsModal="showDetails"
+      @handleDeleteTodo="deleteTodo"
       title="Todo"
       :todos="pendingTodos"
     ></todos-list>
@@ -15,7 +16,8 @@
   ></create-todo-item>
   <todo-details
     @handleCloseModal="closeDetailsModal"
-    :showModal="selectedTodo"
+    @handleSaveTodo="saveTodo"
+    :showModal="!!selectedTodo"
     v-bind="selectedTodo"
   ></todo-details>
 </template>
@@ -46,7 +48,7 @@ export default {
         },
         {
           id: '2',
-          title: 'Todo Test',
+          title: 'Todo Test 2',
           description: 'Todo Description',
           priority: 'normal'
         }
@@ -63,9 +65,24 @@ export default {
     closeCreateModal() {
       this.showCreateTodoModal = false;
     },
-    showDetails(todo) {
-      console.log(todo);
+    showDetails(id) {
+      const todo = this.getTodo(id);
       this.selectedTodo = todo;
+    },
+    saveTodo(id, title, description, priority) {
+      const todo = this.getTodo(id);
+      todo.title = title;
+      todo.description = description;
+      todo.priority = priority;
+    },
+    deleteTodo(id) {
+      let index = this.pendingTodos.findIndex(p => p.id === id);
+      if (index >= 0) {
+        this.pendingTodos.splice(index, 1);
+      } else {
+        index = this.doneTodos.findIndex(p => p.id === id);
+        this.doneTodos.splice(index, 1);
+      }
     },
     closeDetailsModal() {
       this.selectedTodo = null;
@@ -77,6 +94,13 @@ export default {
         description,
         priority
       });
+    },
+    getTodo(id) {
+      let el = this.pendingTodos.find((p) => p.id === id);
+      if (!el) {
+        el = this.doneTodos.find((p) => p.id === id);
+      }
+      return el;
     }
   }
 };

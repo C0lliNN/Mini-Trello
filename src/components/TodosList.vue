@@ -7,7 +7,8 @@
           :key="todo.id"
           v-for="todo in todos"
           v-bind="todo"
-          @click="$emit('handle-show-details-modal', todo)"
+          @click="$emit('handle-show-details-modal', todo.id)"
+          @handleDeleteTodo="deleteTodo(todo.id)"
         >
         </todos-list-item>
       </ul>
@@ -20,7 +21,7 @@
 import TodosListItem from './TodosListItem.vue';
 export default {
   components: { TodosListItem },
-  emits: ['handle-show-details-modal'],
+  emits: ['handle-show-details-modal', 'handle-delete-todo'],
   props: {
     todos: {
       type: Array,
@@ -30,6 +31,11 @@ export default {
     title: {
       type: String,
       required: true
+    }
+  },
+  methods: {
+    deleteTodo(id) {
+      this.$emit('handle-delete-todo', id);
     }
   }
 };

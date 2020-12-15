@@ -1,27 +1,27 @@
 <template>
-  <base-modal>
+  <base-modal :showModal="showModal">
     <template #header>
       <h3>Detalhes do Todo</h3>
     </template>
     <template #body>
       <base-form-group>
-        <label for="title">Título</label>
+        <label for="title2">Título</label>
         <input
           type="text"
-          id="title"
+          id="title2"
           autocomplete="off"
-          :value="title"
-          readonly
+          v-model="titleValue"
+          :readonly="!editMode"
         />
       </base-form-group>
       <base-form-group>
-        <label for="description">Descrição</label>
+        <label for="description2">Descrição</label>
         <textarea
-          id="description"
+          id="description2"
           rows="10"
           autocomplete="off"
-          :value="description"
-          readonly
+          :readonly="!editMode"
+          v-model="descriptionValue"
         ></textarea>
       </base-form-group>
       <div class="priority-group">
@@ -32,8 +32,8 @@
               type="radio"
               name="priority"
               value="normal"
-              disabled
-              :checked="priority === 'normal'"
+              :disabled="!editMode"
+              v-model="priorityValue"
             />
             <div class="normal"></div>
           </label>
@@ -42,8 +42,8 @@
               type="radio"
               name="priority"
               value="important"
-              disabled
-              :checked="priority === 'important'"
+              :disabled="!editMode"
+              v-model="priorityValue"
             />
             <div class="important"></div>
           </label>
@@ -52,8 +52,8 @@
               type="radio"
               name="priority"
               value="urgent"
-              disabled
-              :checked="priority === 'urgent'"
+              :disabled="!editMode"
+              v-model="priorityValue"
             />
             <div class="urgent"></div>
           </label>
@@ -68,7 +68,12 @@
       >
         Fechar
       </base-button>
-      <base-button variant="primary">OK</base-button>
+      <base-button
+        variant="primary"
+        @click="editMode ? saveTodo() : setEditMode()"
+      >
+        {{ editMode ? 'Salvar' : 'Editar' }}
+      </base-button>
     </template>
   </base-modal>
 </template>
@@ -80,19 +85,67 @@ import BaseFormGroup from './UI/BaseFormGroup';
 
 export default {
   components: { BaseModal, BaseFormGroup, BaseButton },
-  emits: ['handle-close-modal'],
+  emits: ['handle-close-modal', 'handle-save-todo'],
   props: {
+    id: {
+      type: String,
+      required: false
+    },
     title: {
       type: String,
-      required: true
+      required: false
     },
     description: {
       type: String,
-      required: true
+      required: false
     },
     priority: {
       type: String,
+      required: false
+    },
+    showModal: {
+      type: Boolean,
       required: true
+    }
+  },
+  data() {
+    return {
+      titleValue: this.title,
+      descriptionValue: this.description,
+      priorityValue: this.priority,
+      editMode: false
+    };
+  },
+  watch: {
+    title(val) {
+      this.titleValue = val;
+    },
+    description(val) {
+      this.descriptionValue = val;
+    },
+    priority(val) {
+      this.priorityValue = val;
+    },
+    showModal(val) {
+      if(!val) {
+        this.editMode = false;
+      }
+    }
+  },
+  methods: {
+    setEditMode() {
+      this.editMode = true;
+    },
+    saveTodo() {
+      this.$emit(
+        'handle-save-todo',
+        this.id,
+        this.titleValue,
+        this.descriptionValue,
+        this.priorityValue
+      );
+      this.editMode = false;
+      this.$emit('handle-close-modal');
     }
   }
 };

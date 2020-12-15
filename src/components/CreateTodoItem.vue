@@ -83,6 +83,15 @@ export default {
       priority: 'normal'
     };
   },
+  watch: {
+    showModal() {
+      if (!this.showModal) {
+        this.title = '';
+        this.description = '';
+        this.priority = 'normal';
+      }
+    }
+  },
   methods: {
     handleSubmit() {
       this.$emit(
@@ -114,6 +123,10 @@ export default {
 
 .priority input:checked + div {
   box-shadow: 0px 0px 0px 3px rgb(4, 175, 255);
+}
+
+.priority input:disabled + div {
+  cursor: default;
 }
 
 .priority-group > div {
