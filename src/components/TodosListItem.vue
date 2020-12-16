@@ -69,6 +69,7 @@ li {
   font-family: 'Space Grotesk', sans-serif;
   background-color: white;
   padding: 10px;
+  box-sizing: border-box;
   color: #565656;
   border-radius: 4px;
   box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
@@ -77,7 +78,7 @@ li {
 }
 
 li:hover {
-  background-color: #f8f6f6;
+  background-color: #fafafa;
 }
 
 .header {

@@ -9,7 +9,7 @@
     ></todos-list>
     <todos-list
       @handleShowDetailsModal="showDetails"
-      title="Done"
+      title="Doing"
       :todos="ongoingTodos"
       @handleDeleteTodo="deleteTodo"
     ></todos-list>
@@ -138,6 +138,28 @@ export default {
 main {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  margin: 0 10px;
+}
+
+@media (min-width: 1200px) {
+  main {
+    justify-content: center;
+  }
+}
+
+main::-webkit-scrollbar {
+  height: 10px;
+}
+
+main::-webkit-scrollbar-thumb {
+  background: #565656;
+  border-radius: 20px;
+}
+
+main::-webkit-scrollbar-track {
+  background: #ddd;
+  border-radius: 20px;
 }
 </style>

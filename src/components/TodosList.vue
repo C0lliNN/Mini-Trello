@@ -43,9 +43,9 @@ export default {
 
 <style scoped>
 section {
-  width: 40%;
-  min-width: 400px;
-  margin: 20px auto;
+  min-width: 350px;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 section h2 {
@@ -56,13 +56,13 @@ section h2 {
 
 .card {
   border: 1px solid #eee;
-  border-radius: 8px;
-  background-color: rgba(30, 30, 30, 0.1);
-  height: 70vh;
-  padding: 20px;
+  border-radius: 4px;
+  background-color: rgba(30, 30, 30, 0.05);
+  height: 80vh;
+  padding: 10px;
   margin-top: 15px;
   box-sizing: border-box;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
   overflow-y: auto;
 }
 
