@@ -56,8 +56,10 @@ export default {
       return classes.join(' ');
     }
   },
-  deleteTodo(id) {
-    this.$emit('handle-delete-todo', id);
+  methods: {
+    deleteTodo(id) {
+      this.$emit('handle-delete-todo', id);
+    }
   }
 };
 </script>

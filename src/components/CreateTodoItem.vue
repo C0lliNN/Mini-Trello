@@ -23,7 +23,7 @@
           <label class="priority">
             <input
               type="radio"
-              name="priority"
+              name="create_priority"
               value="normal"
               v-model="priority"
             />
@@ -32,7 +32,7 @@
           <label class="priority">
             <input
               type="radio"
-              name="priority"
+              name="create_priority"
               value="important"
               v-model="priority"
             />
@@ -41,7 +41,7 @@
           <label class="priority">
             <input
               type="radio"
-              name="priority"
+              name="create_priority"
               value="urgent"
               v-model="priority"
             />
@@ -84,8 +84,8 @@ export default {
     };
   },
   watch: {
-    showModal() {
-      if (!this.showModal) {
+    showModal(val) {
+      if (!val) {
         this.title = '';
         this.description = '';
         this.priority = 'normal';
