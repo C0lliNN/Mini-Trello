@@ -57,7 +57,13 @@ section h2 {
 .card {
   border: 1px solid #eee;
   border-radius: 4px;
-  background-color: rgba(30, 30, 30, 0.05);
+  background: linear-gradient(
+      0deg,
+      rgba(230, 230, 230, 0.4),
+      rgba(230, 230, 230, 0.4)
+    ),
+    url('../assets/texture.jpg');
+  background-size: cover;
   height: 80vh;
   padding: 10px;
   margin-top: 15px;
@@ -73,7 +79,22 @@ section h2 {
   font-size: 1.05em;
 }
 
-section ul {
+.card {
   list-style: none;
 }
+
+.card::-webkit-scrollbar {
+  width: 5px;
+}
+
+.card::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 50px;
+}
+
+.card::-webkit-scrollbar-track {
+  background: #ddd;
+  border-radius: 50px;
+}
+
 </style>
