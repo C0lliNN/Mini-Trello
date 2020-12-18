@@ -66,9 +66,9 @@ export default {
     const data = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
 
     if (data) {
-      this.pendingTodos = data.pendingTodos;
-      this.ongoingTodos = data.ongoingTodos;
-      this.doneTodos = data.doneTodos;
+      this.pendingTodos = data.pendingTodos ?? [];
+      this.ongoingTodos = data.ongoingTodos ?? [];
+      this.doneTodos = data.doneTodos ?? [];
     }
   },
   methods: {

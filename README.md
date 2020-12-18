@@ -1,4 +1,11 @@
-# todo-app
+# Mini Trello
+
+## Features
+
+* Draggability
+* LocalStorage
+* Smooth Animation
+* Custom Scrolling
 
 ## Project setup
 ```
@@ -23,7 +30,5 @@ yarn lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-## Color Palette
-[https://colorhunt.co/palette/220057](https://colorhunt.co/palette/220057)
 
 
