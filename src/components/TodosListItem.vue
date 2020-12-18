@@ -22,19 +22,19 @@ export default {
   props: {
     id: {
       type: String,
-      required: true
+      required: false
     },
     title: {
       type: String,
-      required: true
+      required: false
     },
     description: {
       type: String,
-      required: true
+      required: false
     },
     priority: {
       type: String,
-      required: true
+      required: false
     }
   },
   emits: ['handle-delete-todo'],

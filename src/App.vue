@@ -6,18 +6,21 @@
       @handleDeleteTodo="deleteTodo"
       title="Todo"
       :todos="pendingTodos"
+      @handleChangeList="updateLocalStorage"
     ></todos-list>
     <todos-list
       @handleShowDetailsModal="showDetails"
       title="Doing"
       :todos="ongoingTodos"
       @handleDeleteTodo="deleteTodo"
+      @handleChangeList="updateLocalStorage"
     ></todos-list>
     <todos-list
       @handleShowDetailsModal="showDetails"
       title="Done"
       :todos="doneTodos"
       @handleDeleteTodo="deleteTodo"
+      @handleChangeList="updateLocalStorage"
     ></todos-list>
   </main>
   <create-todo-item
@@ -88,12 +91,20 @@ export default {
     },
     deleteTodo(id) {
       let index = this.pendingTodos.findIndex((p) => p.id === id);
-      if (index >= 0) {
-        this.pendingTodos.splice(index, 1);
-      } else {
+      let array = this.pendingTodos;
+
+      if (index < 0) {
+        index = this.ongoingTodos.findIndex((p) => p.id === id);
+        array = this.ongoingTodos;
+      } 
+
+      if (index < 0) {
         index = this.doneTodos.findIndex((p) => p.id === id);
-        this.doneTodos.splice(index, 1);
+        array = this.doneTodos;
       }
+
+      array.splice(index, 1);
+
       this.updateLocalStorage();
     },
     closeDetailsModal() {
@@ -110,6 +121,9 @@ export default {
     },
     getTodo(id) {
       let el = this.pendingTodos.find((p) => p.id === id);
+      if (!el) {
+        el = this.ongoingTodos.find((p) => p.id === id);
+      }
       if (!el) {
         el = this.doneTodos.find((p) => p.id === id);
       }
